@@ -8,11 +8,16 @@ for (let i = 0; i < SQUARES_NUMBER; i++) {
 
   square.addEventListener('mouseover', setColor);
   square.addEventListener('mouseleave', removeColor);
+  square.addEventListener('touchmove', setColor);
+  square.addEventListener('touchend', removeColor);
 
   board.append(square);
 }
 
 function setColor(event) {
+  if (event.type === 'touchmove') {
+    event.preventDefault();
+  }
   const element = event.target;
   const color = getRandomColor();
   element.style.backgroundColor = color;
